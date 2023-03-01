@@ -1,12 +1,13 @@
 import { FaSearch } from 'react-icons/fa';
 import { useState, useContext } from 'react';
 import GithubContext from '../../context/github/GithubContext';
+import AlertContext from '../../context/alert/AlertContext';
 
 function UserSearch() {
   const [text, setText] = useState('');
 
   const { users, searchUsers, clearUsers } = useContext(GithubContext);
-
+  const {setAlert} = useContext(AlertContext)
   //SEARCH
   const handleChange = (e) => setText(e.target.value);
   //SUBMIT
@@ -14,7 +15,7 @@ function UserSearch() {
     e.preventDefault();
 
     if (text === '') {
-      alert('PLease enter something');
+      setAlert('PLease enter something', 'error'); //type = error
     } else {
       searchUsers(text);
     }
