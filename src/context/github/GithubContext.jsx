@@ -20,6 +20,7 @@ export const GithubProvider = ({ children }) => {
   const searchUsers = async (text) => {
     setLoading();
 
+    //https://googlechrome.github.io/samples/urlsearchparams/
     const params = new URLSearchParams({
       q: text,
     });
@@ -64,6 +65,7 @@ export const GithubProvider = ({ children }) => {
   const getUserRepos = async (login) => {
     setLoading()
 
+    //https://googlechrome.github.io/samples/urlsearchparams/
     const params = new URLSearchParams({
       sort: 'created',
       per_page: 10,
@@ -96,10 +98,7 @@ export const GithubProvider = ({ children }) => {
   return (
     <GithubContext.Provider
       value={{
-        users: state.users,
-        user: state.user,
-        loading: state.loading,
-        repos: state.repos,
+        ...state,  //instead of writing all states separately
         searchUsers,
         getUser,
         clearUsers,

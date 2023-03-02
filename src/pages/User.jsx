@@ -15,13 +15,14 @@ import GithubContext from '../context/github/GithubContext';
 import { useParams } from 'react-router-dom';
 
 function User() {
-  const { getUser, user, loading, getUserRepos, repos } = useContext(GithubContext);
+  const { getUser, user, loading, getUserRepos, repos } =
+    useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
-    getUserRepos(params.login)
+    getUserRepos(params.login);
   }, []);
 
   //destructuring what we need from the 'user' object that we got from the github api (used through GithubContext)
@@ -50,7 +51,7 @@ function User() {
     <>
       <div className='w-full mx-auto lg:w-10/12'>
         <div className='mb-4'>
-          <Link to='/' className='btn btn-ghost'>
+          <Link to='/' className='btn btn-outline'>
             Back to Search
           </Link>
         </div>
@@ -94,8 +95,18 @@ function User() {
               {location && (
                 // NOTE: stat - daisyUi class
                 <div className='stat'>
-                  <div className='stat-title text-md'><FaLocationArrow /></div>
-                  <div className='text-lg stat-value'>{location}</div>
+                  <div className='stat-title text-md'>
+                    <FaLocationArrow />
+                  </div>
+                  <div className='text-lg stat-value'>
+                    <a
+                      href={`http://maps.google.com/?q=${location}`}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {location}
+                    </a>
+                  </div>
                 </div>
               )}
               {blog && (
@@ -116,7 +127,9 @@ function User() {
               {twitter_username && (
                 // NOTE: stat - daisyUi class
                 <div className='stat'>
-                  <div className='stat-title text-md'><FaTwitter /></div>
+                  <div className='stat-title text-md'>
+                    <FaTwitter />
+                  </div>
                   <div className='text-lg stat-value'>
                     <a
                       href={`https://twitter.com/${twitter_username}`}
@@ -132,54 +145,46 @@ function User() {
           </div>
         </div>
 
-        <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                    <FaUsers className='text-3xl md:text-5xl' />
-                </div>
-                <div className="stat-title pr-5">
-                    Followers
-                </div>
-                <div className="stat-value pr-5 text-xl md:text-4xl">
-                    {followers}
-                </div>
+        <div className='w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats'>
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaUsers className='text-3xl md:text-5xl' />
             </div>
+            <div className='stat-title pr-5'>Followers</div>
+            <div className='stat-value pr-5 text-xl md:text-4xl'>
+              {followers}
+            </div>
+          </div>
 
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                    <FaUserFriends className='text-3xl md:text-5xl' />
-                </div>
-                <div className="stat-title pr-5">
-                    Following
-                </div>
-                <div className="stat-value pr-5 text-xl md:text-4xl">
-                    {following}
-                </div>
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaUserFriends className='text-3xl md:text-5xl' />
             </div>
+            <div className='stat-title pr-5'>Following</div>
+            <div className='stat-value pr-5 text-xl md:text-4xl'>
+              {following}
+            </div>
+          </div>
 
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                    <FaCode className='text-3xl md:text-5xl' />
-                </div>
-                <div className="stat-title pr-5">
-                    Public Repos
-                </div>
-                <div className="stat-value pr-5 text-xl md:text-4xl">
-                    {public_repos}
-                </div>
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaCode className='text-3xl md:text-5xl' />
             </div>
+            <div className='stat-title pr-5'>Public Repos</div>
+            <div className='stat-value pr-5 text-xl md:text-4xl'>
+              {public_repos}
+            </div>
+          </div>
 
-            <div className="stat">
-                <div className="stat-figure text-secondary">
-                    <FaStoreAlt className='text-3xl md:text-5xl' />
-                </div>
-                <div className="stat-title pr-5">
-                    Public Gists
-                </div>
-                <div className="stat-value pr-5 text-xl md:text-4xl">
-                    {public_gists}
-                </div>
+          <div className='stat'>
+            <div className='stat-figure text-secondary'>
+              <FaStoreAlt className='text-3xl md:text-5xl' />
             </div>
+            <div className='stat-title pr-5'>Public Gists</div>
+            <div className='stat-value pr-5 text-xl md:text-4xl'>
+              {public_gists}
+            </div>
+          </div>
         </div>
 
         <RepoList repos={repos} />

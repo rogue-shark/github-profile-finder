@@ -44,16 +44,16 @@ function UserSearch() {
           </div>
         </form>
       </div>
-      {users.length > 0 && (
+      {users.length > 0 ? (
         <div>
           <button
             onClick={clearUsers} 
-            className='btn btn-ghost btn-lg'
+            className='btn btn-outline btn-lg '
           >
             Clear
           </button>
         </div>
-      )}
+      ) : (<div>A much better way to experience GitHub while you browse it! Go on, the floor is yours.</div>) }
     </div>
   );
 }
