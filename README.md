@@ -1,7 +1,7 @@
-# GITHUB FINDER APP
+# GITHUB PROFILE FINDER APP
 
  <h2>
-   <a href="https://gitub-profile-browser.netlify.app">
+   <a href="https://gitub-profile-browser.netlify.app" target="_blank">
       Demo
    </a>
 </h2>
